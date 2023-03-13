@@ -37,7 +37,7 @@ main {
         text-overflow: ellipsis;
     }
 
-@media (max-width: 640.98px) {
+@media (max-width: 198px) {
     .top-row:not(.auth) {
         display: none;
     }
@@ -51,7 +51,7 @@ main {
     }
 }
 
-@media (min-width: 641px) {
+@media (min-width: 200px) {
     .page {
         flex-direction: row;
     }
@@ -79,4 +79,25 @@ main {
         padding-left: 2rem !important;
         padding-right: 1.5rem !important;
     }
+}
+
+.header-item{
+    display: inline;
+    text-align: center;
+    padding: 0.7rem 0.4rem;
+    background-color: #e6e5e5;
+    border-radius: 10px;
+    border-bottom: 2px solid #d0d0d0;
+    border-right: 2px solid #d0d0d0;
+}
+    .header-item:hover{
+        background-color: rgba(0,0,0,0.1);
+    }
+
+.profile-img{
+    width: 30px;
+    height: auto;
+    display: inline;
+    border-radius: 50%;
+    user-select: none;
 }

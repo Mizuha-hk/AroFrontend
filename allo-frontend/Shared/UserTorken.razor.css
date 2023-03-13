@@ -1,0 +1,18 @@
+.user-torken{
+    width: 35%;
+}
+
+.loading{
+    margin-left: 0.5rem;
+}
+
+.amount-torken{
+    display: inline;
+    font-size: 70px;
+    padding-left: 35%;
+}
+
+.unit{
+    display: inline;
+    padding-left: 20px;
+}

@@ -1,0 +1,19 @@
+.profile-img{
+    width: 100px;
+    height: auto;
+    align-self: center;
+}
+
+.edit-button{
+    display: flex;
+    width: 40px;
+    height: 40px;
+    background-color: #dddddd;
+    border-radius: 50%;
+}
+
+.edit-img{
+    justify-self: center;
+    width: 30px;
+    height: auto;
+}

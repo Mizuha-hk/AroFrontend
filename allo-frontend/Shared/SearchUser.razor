@@ -1,0 +1,19 @@
+<div class="search-box">
+    <input class="input-box" id="search-user" type="text" @bind="@userName" />
+    <div class="search-button">
+        <img class="search-button-img" src="images/search.gif" @onclick="SearchButtonClicked" /> 
+    </div>
+</div>
+<div class="user-list">
+    
+</div>
+
+@code
+{
+    private string? userName;
+
+    private void SearchButtonClicked()
+    {
+
+    }
+}
