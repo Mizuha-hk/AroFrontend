@@ -46,7 +46,7 @@
 
                 using (var client = new HttpClient())
                 {
-                    res = await client.GetStringAsync(@"/.auth/me");
+                    res = await client.GetStringAsync(@"https://brave-field-0f0f09e00.2.azurestaticapps.net/.auth/me");
                 }
                 //principal = res;
                 text = res;
