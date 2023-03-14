@@ -11,20 +11,11 @@
     private async Task reqData()
     {
         client.DefaultRequestHeaders.Accept.Clear();
-
-        var response = await client.GetAsync("/.auth/me");
-
-        if (response.IsSuccessStatusCode)
+        using (var client = new HttpClient())
         {
-            var responseContent = await response.Content.ReadAsStringAsync();
-            Console.WriteLine(responseContent);
-            // handle the response content as needed
-        }
-        else
-        {
-            Console.WriteLine("Error");
-            // handle the error response as needed
-        }
+            var response = await client.GetStringAsync(@"http://localhost:4280/.auth/me");
+            Console.WriteLine(response);
+        } 
     }
 
     protected override async Task OnInitializedAsync()

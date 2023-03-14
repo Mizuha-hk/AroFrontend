@@ -5,7 +5,20 @@
   },
   "routes": [
     {
+      "route": "*",
+      "methods": [
+          "POST",
+          "PUT",
+          "DELETE",
+          "GET"
+      ]
+    },
+    {
       "route": "/",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/register",
       "allowedRoles": ["authenticated"]
     },
     {
