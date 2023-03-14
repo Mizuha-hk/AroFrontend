@@ -1,0 +1,33 @@
+@page "/fetch-data"
+@using System.Net.Http
+@using System.Net.Http.Headers
+
+<button @onclick="reqData">Fetch Data</button>
+
+@code {
+    private HttpClient client;
+
+    protected override void OnInitialized()
+    {
+        client = new HttpClient();
+    }
+
+    private async void reqData()
+    {
+        client.DefaultRequestHeaders.Accept.Clear();
+        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/plain"));
+
+        var response = await client.GetAsync("https://app-backend-debug.azurewebsites.net/api/user/all");
+
+        if (response.IsSuccessStatusCode)
+        {
+            var responseContent = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(responseContent);
+            // handle the response content as needed
+        }
+        else
+        {
+            // handle the error response as needed
+        }
+    }
+}

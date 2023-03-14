@@ -40,3 +40,21 @@
 
     margin-top: 2%;
 }
+
+@media screen and (max-width: 600px) {
+    .pagelayout{
+        display: block;
+    }
+
+    .left-layout{
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .bg-user-list{
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}

@@ -54,14 +54,27 @@
     display:flex;
 }
 
-@media (min-width: 400px) {
+@media screen and (max-width: 600px) {
     .Nav-layout{
-        display:block;
+        display:flex;
+        align-items: center;
+        justify-content: left;
     }
     
     .nav-scrollable {
         height: calc(100vh - 3.5rem);
         overflow-y: auto;
+    }
+
+    .nav-item:last-of-type{
+        padding-top: 1rem;
+        padding-bottom: none;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .Nav-layout{
+        display: block;
     }
 }
 

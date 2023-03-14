@@ -1,21 +1,102 @@
+@using System.Net.Http
+@using System.Net.Http.Headers
+@using System.Text.Json
+
 <div class="search-box">
     <input class="input-box" id="search-user" type="text" @bind="@userName" />
     <div class="search-button">
-        <img class="search-button-img" src="images/search.gif" @onclick="SearchButtonClicked" /> 
+        <img class="search-button-img" src="images/search.gif" @onclick="SearchUserFromName" /> 
     </div>
 </div>
 <div class="user-list">
-    <ul class="scroll">
+    <div class="scroll">
+        @if(Users != null)
+        {
+            @foreach (var item in Users)
+            {
+                <div class="user-list-item">
+                    <div class="name">@item.UserName</div>
+                    <button>follow</button>
+                </div>
+            }
+        }
+        else
+        {
+            <ul>Loading...</ul>
+        }
 
-    </ul>
+    </div>
 </div>
 
 @code
 {
+    private HttpClient client;
+    private List<UserInfo> Users;
     private string? userName;
-
-    private void SearchButtonClicked()
+    private bool searchFormIsEmpty = true;
+    private async Task GetUsers()
     {
+        client.DefaultRequestHeaders.Accept.Clear();
+        //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/plain"));
 
+        var response = await client.GetAsync("https://app-backend-debug.azurewebsites.net/api/user/page/0");
+
+        if (response.IsSuccessStatusCode)
+        {
+            Console.WriteLine("Success");
+            Console.WriteLine(response);
+
+            var content = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(content);
+            Users = JsonSerializer.Deserialize<List<UserInfo>>(content);
+            Console.WriteLine(Users);
+        }
+        else
+        {
+            Console.WriteLine("Error");
+        }
+    }
+
+    //名前からUserを絞り、検索結果をリストに格納する関数（onclickで呼びそう）
+    private async Task SearchUserFromName()
+    {
+        if(userName == null | userName == "")
+        {
+            if(!searchFormIsEmpty)
+            {
+                await GetUsers();
+            }
+            searchFormIsEmpty = true;
+            return;
+        }
+        else
+        {
+            searchFormIsEmpty = false;
+
+            client.DefaultRequestHeaders.Accept.Clear();
+            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/plain"));
+
+            var response = await client.GetAsync("https://app-backend-debug.azurewebsites.net/api/user/serch/"+userName);
+
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("Success");
+                Console.WriteLine(response);
+
+                var content = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(content);
+                Users = JsonSerializer.Deserialize<List<UserInfo>>(content);
+                Console.WriteLine(Users);
+            }
+            else
+            {
+                Console.WriteLine("Error");
+            }
+        }
+    }
+    protected override async void OnInitialized()
+    {
+        client = new HttpClient();
+        await GetUsers();
     }
 }
