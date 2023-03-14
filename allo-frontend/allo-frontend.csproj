@@ -5,6 +5,9 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="StockListModel">
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Blazored.Modal" Version="7.1.0" />

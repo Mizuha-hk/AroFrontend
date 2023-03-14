@@ -1,0 +1,12 @@
+using System.ComponentModel.DataAnnotations;
+
+public class StockListModel
+{
+    [Required]
+    [StringLength(20, ErrorMessage = "Name is too long.")]
+    public string? listItem ;
+
+    [Required]
+    private double? token;
+
+}
