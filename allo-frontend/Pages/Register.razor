@@ -19,17 +19,6 @@
     private int currentCount = 0;
     public StaticWebAppsAuth AppsAuth;
     public string exception = string.Empty;
-    protected override async Task OnInitializedAsync()
-    {
-        try
-        {
-            AppsAuth = new StaticWebAppsAuth();
-            var res = await AppsAuth.Get();
-        } catch (Exception ex)
-        {
-            exception = $"{ex.Message} {ex.StackTrace}";
-        }
-    }
 
     private void IncrementCount()
     {
@@ -71,4 +60,18 @@
          }
 
     }
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            AppsAuth = new StaticWebAppsAuth();
+            var res = await AppsAuth.Get();
+        } catch (Exception ex)
+        {
+            exception = $"{ex.Message} {ex.StackTrace}";
+        }
+    }
+
+    
 }
