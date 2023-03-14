@@ -1,22 +1,32 @@
 ﻿@page "/user"
 
 <PageTitle>User</PageTitle>
+<div class="">
+    <div class="profile-center">
+        <div class="profile">
+         <img class="profile-img" src="images/profile.gif">
+         <img class="edit-img" src="images/edit.png">
+        </div>
+    </div>
+    <div class="user-name">@userName</div>
 
-<img class="profile-img" src="images/profile.gif">
-<div class="edit-button">
-    <img class="edit-img" src="images/edit.png">
+    <div class="list-box">
+        <div class="bg-list give-flex">
+            <StockList />
+        </div>
+
+        <div class="bg-list">
+        </div>
+
+        <div class="bg-list">
+        </div>
+
+        <div class="bg-list give-flex">
+            <MyToken />
+        </div>
+    </div>
 </div>
-<div>@userName</div>
 
-<div>
-
-</div>
-<div>
-
-</div>
-<div>
-
-</div>
 
 @code {
     private string? userName = "hoge";

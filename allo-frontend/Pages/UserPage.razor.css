@@ -1,19 +1,52 @@
-.profile-img{
-    width: 100px;
-    height: auto;
-    align-self: center;
+.box-center{
+    display: flex;
+    justify-content: center;
 }
 
-.edit-button{
+.profile-center{
     display: flex;
-    width: 40px;
-    height: 40px;
-    background-color: #dddddd;
+    justify-content: center;
+}
+
+.profile{
+    position: relative;
+}
+
+.profile-img{
+    /* display: block; */
+    width: 200px;
+    height: auto;
     border-radius: 50%;
+    border: 3px solid #000;
 }
 
 .edit-img{
-    justify-self: center;
-    width: 30px;
+    position: absolute;
+    width: 45px;
     height: auto;
+}
+
+.user-name{
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.list-box{
+    display: flex;
+    position: relative;
+}
+
+.give-flex{
+    display: flex;
+}
+
+.bg-list{
+    vertical-align: top;
+    width: 20%;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    border: 1px solid #000000;
+    margin-left: 2rem;
 }

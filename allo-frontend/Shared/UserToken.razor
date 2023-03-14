@@ -1,0 +1,14 @@
+
+@if(@token == null)
+{
+    <p class="loading">Loading...</p>
+}
+else
+{
+    <p class="amount-torken">@token</p>
+}
+<p class="unit">Token</p>
+
+@code{
+    private int? token = 2;
+}
