@@ -50,18 +50,16 @@
     background-color: rgba(0,0,0,0.05);
 }
 
-@media (min-width: 200px) {
-    /* .navbar-toggler {
-        display: none;
-    } */
+.Nav-layout{
+    display:flex;
+}
 
-    .collapse {
-        /* Never collapse the sidebar for wide screens */
-        /* display: block; */
+@media (min-width: 400px) {
+    .Nav-layout{
+        display:block;
     }
     
     .nav-scrollable {
-        /* Allow sidebar to scroll for tall menus */
         height: calc(100vh - 3.5rem);
         overflow-y: auto;
     }
