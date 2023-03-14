@@ -1,4 +1,4 @@
-<div class="card">
+<div class="stock-list">
     <div class="title">
         お願い事リスト
     </div>
@@ -7,30 +7,29 @@
     </div>
 
     <div class="btn-layout">
-        <div class="make-stock-button">
-            <div class="modal-001__wrap">
-                <input type="radio" id="modal-001__open" class="modal-001__open-input" name="modal-001__trigger"/>
-                <label for="modal-001__open"  class="modal-001__open-label">
-                    作成
-                </label>
-                <input type="radio" id="modal-001__close" name="modal-001__trigger"/>
-                <div class="modal-001">
-                    <div class="modal-001__content-wrap">
-                        <label for="modal-001__close" class="modal-001__close-label">×</label>
-                            <div class="modal-001__content">
-                                <MakeStockModal />
-                            </div>
-                        </div>
-                        <label for="modal-001__close">
-                            <div class="modal-001__background"></div>
-                        </label>
-                    </div>
-                </div>
+        <div class="make-stock-button" data-bs-toggle="modal" data-bs-target="#MakeStockModal">
+            作成
+        </div>
+    </div>
+
+    <div class="modal fade" id="MakeStockModal" tabindex="-1" aria-labelledby="MakeStockModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="MakeStockModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
             </div>
         </div>
     </div>
-    <!--modal-->
-
+</div>
 
 @code{
    
