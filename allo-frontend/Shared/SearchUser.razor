@@ -94,7 +94,8 @@
             }
         }
     }
-    protected override async void OnInitialized()
+    
+    protected override async Task OnInitializedAsync()
     {
         client = new HttpClient();
         await GetUsers();

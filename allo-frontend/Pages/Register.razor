@@ -1,0 +1,36 @@
+@page "/register"
+@using System.Net.Http
+@using System.Net.Http.Headers
+
+<button @onclick="reqData">Rrgister Data</button>
+
+
+@code {
+    private HttpClient client;
+
+    private async Task reqData()
+    {
+        client.DefaultRequestHeaders.Accept.Clear();
+
+        var response = await client.GetAsync("/.auth/me");
+
+        if (response.IsSuccessStatusCode)
+        {
+            var responseContent = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(responseContent);
+            // handle the response content as needed
+        }
+        else
+        {
+            Console.WriteLine("Error");
+            // handle the error response as needed
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        client = new HttpClient();
+        await reqData();
+    }
+
+}

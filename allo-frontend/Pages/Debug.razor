@@ -21,11 +21,6 @@
     private HttpClient client;
     private List<Test> Users;
 
-    protected override void OnInitialized()
-    {
-        client = new HttpClient();
-    }
-
     private async Task GetUsers()
     {
         client.DefaultRequestHeaders.Accept.Clear();
@@ -47,5 +42,12 @@
         {
             Console.WriteLine("Error");
         }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        client = new HttpClient();
+
+        await GetUsers();
     }
 }
