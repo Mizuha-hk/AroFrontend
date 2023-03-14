@@ -1,0 +1,32 @@
+.friend-list-bg{
+    width: 100%;
+    height: 100%;
+    background-color: #f3f3f3;
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+
+.title{
+    font-size: 25x;
+    background-color: #929292;
+    border-radius: 10px 10px 0 0;
+}
+
+.friend-list{
+    width: 90%;
+    height: 60%;
+
+    margin: 3px auto;
+    background-color: #fff;
+    border-radius: 5px;
+    border-top: 1px solid #929292;
+    border-left: 1px solid #929292;
+}
+
+.scroll{
+    overflow-x: none;
+    overflow-y: scroll;
+    
+    width: 100%;
+    height: 100%;
+}

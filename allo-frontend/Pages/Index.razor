@@ -1,13 +1,20 @@
 ﻿@page "/"
 
 <PageTitle>Home</PageTitle>
+<div class="pagelayout">
+    <div class="left-layout">
+        <div class="bg-user-torken">
+            <h1 class="title">トークン残高</h1>
+            <UserToken />
+        </div>
 
-<div class="bg-user-torken">
-    <h1 class="title">トークン残高</h1>
-    <UserToken />
-</div>
+        <div class="bg-friend-list">
+            <FriendList />
+        </div>
+    </div>
 
-<div class="bg-user-list">
-    <h1 class="title">ユーザー検索</h1>
-    <SearchUser />
+    <div class="bg-user-list">
+        <h1 class="title">ユーザー検索</h1>
+        <SearchUser />
+    </div>
 </div>

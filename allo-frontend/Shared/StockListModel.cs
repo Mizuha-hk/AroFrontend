@@ -1,3 +1,5 @@
+namespace allo_frontend;
+
 using System.ComponentModel.DataAnnotations;
 
 public class StockListModel
@@ -7,6 +9,6 @@ public class StockListModel
     public string? listItem ;
 
     [Required]
-    private double? token;
+    public double? token;
 
 }

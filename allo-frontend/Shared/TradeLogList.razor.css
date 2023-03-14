@@ -1,0 +1,15 @@
+.list-bg{
+    width: 90%;
+    height: 90%;
+    background-color: #fff;
+    border-radius: 10px;
+    border-top: 2px solid #555;
+    border-left: 2px solid #555;
+    margin: 5px auto;
+}
+
+.scroll{
+    height: 100%;
+    overflow-x: none;
+    overflow-y: scroll;
+}

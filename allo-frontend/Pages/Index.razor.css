@@ -1,7 +1,7 @@
 .bg-user-torken {
     display: inline-block;
     vertical-align: top;
-    width: 35%;
+    width: 90%;
     background-color: #f3f3f3;
     border-radius: 10px;
     border: 1px solid #000000;
@@ -23,4 +23,20 @@
     border-radius: 10px;
     border: 1px solid #000000;
     /* margin-left: 2rem; */
+}
+
+.pagelayout{
+    display: flex;
+}
+
+.left-layout{
+    display: block;
+    width: 45%;
+}
+
+.bg-friend-list{
+    width: 90%;
+    height: 50%;
+
+    margin-top: 2%;
 }

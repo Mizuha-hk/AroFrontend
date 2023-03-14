@@ -3,19 +3,28 @@
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="MakeStockModalLabel">Modal title</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <h1>願い事リスト作成</h1>
-                <EditForm Model="@stockListModel" @onsubmit="SubmitList">
+                <form Model="@stockListModel">
+                    <div class="input-form">
+                        <div class="form">
+                            <label for="item">お願い事</label>
+                            <input class="stock-form" type="text" id="item" @bind="stockListModel.listItem" required />
+                        </div>
 
-                </EditForm>
+                        <div class="form">
+                            <label for="token">トークン</label>
+                            <input class="token-form" type="text" id="token" @bind="stockListModel.token" required pattern="([1-9]*\.\[0-9]*) | (0.\[0-9]*) | ([0-9]*)" />
+                        </div>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                    <div class="btns">
+                        <button type="submit" class="btn btn-primary button-margin" @onclick="SubmitList">作成</button>
+                        <button type="button" class="btn btn-secondary button-margin" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
             </div>
             </div>
         </div>
