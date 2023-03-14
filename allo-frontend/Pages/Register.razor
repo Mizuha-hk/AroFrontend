@@ -1,27 +1,74 @@
 @page "/register"
+@using System.Security.Claims
+@using System.Text
+@using System.Text.Json
+@using System.Web
 @using System.Net.Http
-@using System.Net.Http.Headers
+@inject HttpClient Http
 
-<button @onclick="reqData">Rrgister Data</button>
+<h1>Register</h1>
+<a href="/.auth/login/aad">AAD Login</a>
+<p>Current count: @currentCount</p>
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<p>@AppsAuth.text</p>
+<p>@AppsAuth.exc</p>
+<p>@exception</p>
 
 
 @code {
-    private HttpClient client;
-
-    private async Task reqData()
-    {
-        client.DefaultRequestHeaders.Accept.Clear();
-        using (var client = new HttpClient())
-        {
-            var response = await client.GetStringAsync(@"http://localhost:4280/.auth/me");
-            Console.WriteLine(response);
-        } 
-    }
-
+    private int currentCount = 0;
+    public StaticWebAppsAuth AppsAuth;
+    public string exception = string.Empty;
     protected override async Task OnInitializedAsync()
     {
-        client = new HttpClient();
-        await reqData();
+        try
+        {
+            AppsAuth = new StaticWebAppsAuth();
+            var res = await AppsAuth.Get();
+        } catch (Exception ex)
+        {
+            exception = $"{ex.Message} {ex.StackTrace}";
+        }
     }
 
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+    public  class StaticWebAppsAuth
+    {
+        public class ClientPrincipal
+        {
+            public string IdentityProvider { get; set; }
+            public string UserId { get; set; }
+            public string UserDetails { get; set; }
+            public IEnumerable<string> UserRoles { get; set; }
+        }
+        public ClientPrincipal principal = new ClientPrincipal();
+        public string text = string.Empty;
+        public string exc = string.Empty;
+
+        public async Task<string>  Get()
+        {
+            string res = null;
+            try
+            {
+                var request = new HttpRequestMessage(HttpMethod.Get, @"/.auth/me");
+
+                using (var client = new HttpClient())
+                {
+                    res = await client.GetStringAsync(@"/.auth/me");
+                }
+                //principal = res;
+                text = res;
+                Console.WriteLine(res);
+            }
+            catch (Exception ex)
+            {
+                exc = $"{ex.Message} {ex.StackTrace}";
+            }
+            return res;
+         }
+
+    }
 }
