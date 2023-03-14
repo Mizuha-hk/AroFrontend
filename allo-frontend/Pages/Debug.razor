@@ -1,0 +1,51 @@
+@page "/debug"
+@using System.Net.Http
+@using System.Net.Http.Headers
+@using System.Text.Json
+
+<h1>Users</h1>
+
+@if (Users != null)
+{
+    <ul>
+        @foreach (var user in Users)
+        {
+            <li>@user.UserName  @user.TokenName</li>
+        }
+    </ul>
+}
+
+<button @onclick="GetUsers">Get Users</button>
+
+@code {
+    private HttpClient client;
+    private List<Test> Users;
+
+    protected override void OnInitialized()
+    {
+        client = new HttpClient();
+    }
+
+    private async Task GetUsers()
+    {
+        client.DefaultRequestHeaders.Accept.Clear();
+        //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/plain"));
+
+        var response = await client.GetAsync("https://app-backend-debug.azurewebsites.net/api/user/page/0");
+
+        if (response.IsSuccessStatusCode)
+        {
+            Console.WriteLine("Success");
+            Console.WriteLine(response);
+
+            var content = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(content);
+            Users = JsonSerializer.Deserialize<List<Test>>(content);
+            Console.WriteLine(Users);
+        }
+        else
+        {
+            Console.WriteLine("Error");
+        }
+    }
+}
