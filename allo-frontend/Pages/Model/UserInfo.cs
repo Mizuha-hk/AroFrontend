@@ -16,7 +16,7 @@ public class UserInfo
     public bool IsReceived { get; set; }
 
     [JsonPropertyName("tokenList")]
-    public Dictionary<string, int> TokenList { get; set; }
+    public Dictionary<string, double> TokenList { get; set; }
 
     [JsonPropertyName("follows")]
     public List<string> Follows { get; set; }
@@ -25,7 +25,7 @@ public class UserInfo
     public List<string> Followers { get; set; }
 
     [JsonPropertyName("myToken")]
-    public int MyToken { get; set; }
+    public double MyToken { get; set; }
 
     [JsonPropertyName("deletedAt")]
     public DateTime? DeletedAt { get; set; }

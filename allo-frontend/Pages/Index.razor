@@ -1,4 +1,8 @@
 ﻿@page "/"
+@using System.Text.Json
+@using System.Web
+@using System.Net.Http
+@inject HttpClient Http
 
 <PageTitle>Home</PageTitle>
 
@@ -21,5 +25,62 @@
 </div>
 
 @code{
+    public StaticWebAppsAuth AppsAuth;
+    public string exception = string.Empty;
+
+    public class ClientPrincipal
+    {
+        public string IdentityProvider { get; set; }
+        public string UserId { get; set; }
+        public string UserDetails { get; set; }
+        public IEnumerable<string> UserRoles { get; set; }
+    }
+    public static ClientPrincipal authdata = new ClientPrincipal();
+
+    public  class StaticWebAppsAuth
+    {
+        public  ClientPrincipal principal = new ClientPrincipal();
+        public string text = string.Empty;
+        public string exc = string.Empty;
+
+        public async Task<string> Get()
+        {
+            string res = null;
+            try
+            {
+                using (var client = new HttpClient { BaseAddress = new Uri("http://localhost:4280") })
+                {
+                    res = await client.GetStringAsync("/.auth/me");
+                    //parse res json to principal
+                    principal = JsonSerializer.Deserialize<ClientPrincipal>(res);
+                    Console.WriteLine(principal);
+                    authdata = principal;
+                }
+                //principal = res;
+                text = res;
+                Console.WriteLine("成功！！");
+                Console.WriteLine(res);
+            }
+            catch (Exception ex)
+            {
+                exc = $"{ex.Message} {ex.StackTrace}";
+            }
+            return res;
+         }
+
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            AppsAuth = new StaticWebAppsAuth();
+            var res = await AppsAuth.Get();
+            Console.WriteLine(res);
+        } catch (Exception ex)
+        {
+            exception = $"{ex.Message} {ex.StackTrace}";
+        }
+    }
     
 }
